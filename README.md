@@ -60,7 +60,7 @@ VALUES
 
 1. Projekt klonen:
 
-git clone https://github.com/dein-username/employee-api.git
+git clone https://github.com/Saglam-90/employee-api.git
 cd employee-api
 
 2. Maven Build:
