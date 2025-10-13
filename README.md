@@ -42,7 +42,7 @@ FLUSH PRIVILEGES;
 
 Hinweis: Die Tabelle employee wird automatisch durch die Employee-Entity in Spring Boot erstellt.
 
-### 2. Testdaten einfügen (optional: Nach dem Start der Anwendung können Testdaten eingefügt werden:)
+### 2. Testdaten einfügen (optional: Nach dem Start der Anwendung können Testdaten eingefügt werden)
 
 ```sql
 USE employee_db;
