@@ -65,13 +65,13 @@ cd employee-api
 ```
 
 3. Maven Build:
-
+```
 mvn clean install
-
+```
 3. Spring Boot starten:
-
+```
 mvn spring-boot:run
-
+```
 Die API läuft nun standardmäßig auf:
 
 http://localhost:8080/api
