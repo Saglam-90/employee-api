@@ -92,7 +92,7 @@ Beispiel POST Request:
 {
 "firstName": "Max",
 "lastName": "Mustermann",
-"email": "max@beispiel.com
+"email": "max@beispiel.com"
 }
 ```
 
