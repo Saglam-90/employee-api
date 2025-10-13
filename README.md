@@ -97,48 +97,107 @@ Beispiel POST Request:
 ```
 
 ## 📂 Projektstruktur
-
-src/main/java/com/saglam/employeeapi
+```plaintext
+employee-api/
 │
-├── controller/ # REST Controller
-├── entity/ # JPA Entities
-├── repository/ # Spring Data JPA Repositories
-└── service/ # Geschäftslogik
+├── src/
+│   ├── main/
+│   │   ├── java/com/saglam/employeeapi/
+│   │   │   ├── controller/
+│   │   │   │   └── EmployeeController.java
+│   │   │   ├── entity/
+│   │   │   │   └── Employee.java
+│   │   │   ├── repository/
+│   │   │   │   └── EmployeeRepository.java
+│   │   │   └── service/
+│   │   │       └── EmployeeService.java
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       └── static/
+│   └── test/
+│       └── java/com/saglam/employeeapi/
+│           └── EmployeeApiApplicationTests.java
+│
+├── .gitignore
+├── pom.xml
+├── README.md
+└── mvnw / mvnw.cmd
+```
 
 ## 🔧 Konfiguration
-
 In src/main/resources/application.properties:
-
+```
 spring.application.name=Spring Boot REST API - Employee Management
 spring.datasource.url=jdbc:mysql://localhost:3306/employee_db
 spring.datasource.username=employee_user
 spring.datasource.password=employee_user
 spring.jpa.hibernate.ddl-auto=update
+```
 
-spring.jpa.hibernate.ddl-auto=update sorgt dafür, dass die Tabellen automatisch erstellt/aktualisiert werden.
+"spring.jpa.hibernate.ddl-auto=update" sorgt dafür, dass die Tabellen automatisch erstellt/aktualisiert werden.
 
 ## 🧪 Testen
 
 Mit Postman oder cURL kann die API getestet werden.
+https://www.postman.com/
+
 
 Beispiele:
 
-# Alle Employees abrufen
+### Alle Employees abrufen
 
-curl http://localhost:8080/api/employees
+**GET**  
+```bash
+curl -X GET http://localhost:8080/api/employees
+```
+Oder im Browser direkt aufrufen:
+http://localhost:8080/api/employees
 
-# Employee nach ID abrufen
+### Employee nach ID abrufen
+```bash
+curl -X GET http://localhost:8080/api/employees/1
+```
+Oder im Browser direkt aufrufen:
+http://localhost:8080/api/employees/1
 
-curl http://localhost:8080/api/employees/1
+### Neuen Employee hinzufügen
+```bash
+curl -X POST http://localhost:8080/api/employees \
+     -H "Content-Type: application/json" \
+     -d '{
+           "firstName": "Max",
+           "lastName": "Mustermann",
+           "email": "max@beispiel.com"
+         }'
+```
+Oder in Postman:
+Methode: POST
+URL: http://localhost:8080/api/employees
+Header: Content-Type: application/json
+Body (raw / JSON):
+```json
+{
+  "firstName": "Max",
+  "lastName": "Mustermann",
+  "email": "max@beispiel.com"
+}
+```
 
-# Neuen Employee hinzufügen
+### Bestehenden Employee aktualisieren
+```bash
+curl -X PUT http://localhost:8080/api/employees \
+     -H "Content-Type: application/json" \
+     -d '{
+           "id": 1,
+           "firstName": "Maximilian",
+           "lastName": "Mustermann",
+           "email": "max@beispiel.com"
+         }'
+```
+🔹 Wichtig: Beim Aktualisieren muss die id im JSON angegeben werden.
 
-curl -X POST -H "Content-Type: application/json" -d '{"firstName":"Max","lastName":"Mustermann","email":"max@beispiel.com"}' http://localhost:8080/api/employees
-
-# Employee löschen
-
+### Employee löschen
+```bash
 curl -X DELETE http://localhost:8080/api/employees/1
-
 ```
-
-```
+🔹 Löscht den Employee mit der ID 1 dauerhaft aus der Datenbank.
