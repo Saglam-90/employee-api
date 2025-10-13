@@ -64,7 +64,7 @@ git clone https://github.com/Saglam-90/employee-api.git
 cd employee-api
 ```
 
-2. Maven Build:
+2. Maven Build im Projektordner:
 ```
 mvn clean install
 ```
