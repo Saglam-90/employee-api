@@ -66,15 +66,15 @@ cd employee-api
 
 2. Maven Build im Projektordner:
 ```
-mvn clean install
+./mvnw clean install
 ```
 3. Spring Boot starten:
 ```
-mvn spring-boot:run
+./mvnw spring-boot:run
 ```
 Die API läuft nun standardmäßig auf:
 
-http://localhost:8080/api
+http://localhost:8080/api/employees
 
 ## 📝 API Endpoints
 
