@@ -40,7 +40,9 @@ GRANT ALL PRIVILEGES ON employee_db.* TO 'employee_user'@'%';
 FLUSH PRIVILEGES;
 ```
 
-Hinweis: Die Tabelle employee wird automatisch durch die Employee-Entity in Spring Boot erstellt.
+> 💡 Die Tabelle `employee` wird automatisch durch die Employee-Entity in Spring Boot erstellt.
+
+---
 
 ### 2. Testdaten einfügen (optional: Nach dem Start der Anwendung können Testdaten eingefügt werden)
 
@@ -55,6 +57,8 @@ VALUES
     ('Noah','Weber','noah@gmail.com'),
     ('Lea','Becker','lea@gmail.com');
 ```
+
+---
 
 ### 3. Projekt starten
 
@@ -73,8 +77,9 @@ cd employee-api
 ./mvnw spring-boot:run
 ```
 Die API läuft nun standardmäßig auf:
+👉 [http://localhost:8080/api/employees](http://localhost:8080/api/employees)
 
-http://localhost:8080/api/employees
+---
 
 ## 📝 API Endpoints
 
@@ -86,7 +91,7 @@ http://localhost:8080/api/employees
 | PUT     | `/employees`      | Bestehenden Mitarbeiter aktualisieren |
 | DELETE  | `/employees/{id}` | Mitarbeiter löschen                   |
 
-Beispiel POST Request:
+**Beispiel POST Request:**
 
 ```json
 {
@@ -95,6 +100,8 @@ Beispiel POST Request:
 "email": "max@beispiel.com"
 }
 ```
+
+---
 
 ## 📂 Projektstruktur
 ```plaintext
@@ -124,9 +131,13 @@ employee-api/
 └── mvnw / mvnw.cmd
 ```
 
+---
+
 ## 🔧 Konfiguration
-In src/main/resources/application.properties:
-```
+
+**Datei:** `src/main/resources/application.properties`
+
+```properties
 spring.application.name=Spring Boot REST API - Employee Management
 spring.datasource.url=jdbc:mysql://localhost:3306/employee_db
 spring.datasource.username=employee_user
@@ -134,33 +145,48 @@ spring.datasource.password=employee_user
 spring.jpa.hibernate.ddl-auto=update
 ```
 
-"spring.jpa.hibernate.ddl-auto=update" sorgt dafür, dass die Tabellen automatisch erstellt/aktualisiert werden.
+> 🧩 `spring.jpa.hibernate.ddl-auto=update` sorgt dafür, dass die Tabellen automatisch erstellt bzw. aktualisiert werden.
+
+---
 
 ## 🧪 Testen
 
-Mit Postman oder cURL kann die API getestet werden.
-https://www.postman.com/
+Mit **Postman** oder **cURL** kann die API getestet werden.
+Die folgenden `curl`-Beispiele sind für **Git Bash**, **Linux** oder **macOS** formatiert.
+👉 [Postman herunterladen](https://www.postman.com/)
 
+> 💡 **Hinweis für Windows-Nutzer:**  
+> Wenn du **CMD** oder **PowerShell** verwendest, ersetze einfache Anführungszeichen `'` durch doppelte `"`  
+> und entferne die Backslashes `\` (oder nutze in PowerShell stattdessen den Backtick `` ` `` für Zeilenumbrüche).
 
-Beispiele:
+Nach dem Start der Anwendung stehen folgende Endpunkte zur Verfügung:
 
-### Alle Employees abrufen
+---
+
+### 🔹 Alle Employees abrufen
 
 **GET**  
 ```bash
 curl -X GET http://localhost:8080/api/employees
 ```
 Oder im Browser direkt aufrufen:
-http://localhost:8080/api/employees
+[http://localhost:8080/api/employees](http://localhost:8080/api/employees)
 
-### Employee nach ID abrufen
+---
+
+### 🔹 Employee nach ID abrufen
 ```bash
 curl -X GET http://localhost:8080/api/employees/1
 ```
-Oder im Browser direkt aufrufen:
-http://localhost:8080/api/employees/1
+Oder im Browser:
+[http://localhost:8080/api/employees/1](http://localhost:8080/api/employees/1)
 
-### Neuen Employee hinzufügen
+---
+
+### 🔹 Neuen Employee hinzufügen
+
+**POST**
+
 ```bash
 curl -X POST http://localhost:8080/api/employees \
      -H "Content-Type: application/json" \
@@ -170,11 +196,13 @@ curl -X POST http://localhost:8080/api/employees \
            "email": "max@beispiel.com"
          }'
 ```
-Oder in Postman:
-Methode: POST
-URL: http://localhost:8080/api/employees
-Header: Content-Type: application/json
-Body (raw / JSON):
+**In Postman:**
+```
+- Methode: `POST`  
+- URL: `http://localhost:8080/api/employees`  
+- Header: `Content-Type: application/json`  
+- Body (raw / JSON):
+```
 ```json
 {
   "firstName": "Max",
@@ -183,7 +211,12 @@ Body (raw / JSON):
 }
 ```
 
-### Bestehenden Employee aktualisieren
+---
+
+### 🔹 Bestehenden Employee aktualisieren
+
+**PUT**
+
 ```bash
 curl -X PUT http://localhost:8080/api/employees \
      -H "Content-Type: application/json" \
@@ -194,10 +227,36 @@ curl -X PUT http://localhost:8080/api/employees \
            "email": "max@beispiel.com"
          }'
 ```
-🔹 Wichtig: Beim Aktualisieren muss die id im JSON angegeben werden.
+**In Postman:**
+- Methode: `PUT`  
+- URL: `http://localhost:8080/api/employees`  
+- Header: `Content-Type: application/json`  
+- Body (raw / JSON):
+- 
+```json
+{
+  "id" : 1,
+  "firstName": "Max",
+  "lastName": "Mustermann",
+  "email": "max@beispiel.com"
+}
+```
+> ⚠️ **Wichtig:** Beim Aktualisieren muss die `id` im JSON-Body angegeben werden.
 
-### Employee löschen
+---
+
+### 🔹 Employee löschen
+
+
+**DELETE**
+
 ```bash
 curl -X DELETE http://localhost:8080/api/employees/1
 ```
-🔹 Löscht den Employee mit der ID 1 dauerhaft aus der Datenbank.
+**In Postman:**
+- Methode: `DELETE`  
+- URL: `http://localhost:8080/api/employees/1`  
+- Header: `Content-Type: application/json`  
+- Body: *(leer)*
+  
+> 🗑️ Löscht den Employee mit der ID `1` dauerhaft aus der Datenbank.
