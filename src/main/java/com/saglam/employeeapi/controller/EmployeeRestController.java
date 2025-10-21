@@ -2,6 +2,8 @@ package com.saglam.employeeapi.controller;
 
 import com.saglam.employeeapi.entity.Employee;
 import com.saglam.employeeapi.service.EmployeeService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +15,7 @@ import java.util.List;
  */
 @RestController()
 @RequestMapping("/api")
+@Tag(name = "Employee Management", description = "CRUD APIs für Mitarbeiter-Verwaltung")
 public class EmployeeRestController {
 
     private EmployeeService employeeService;
@@ -22,20 +25,20 @@ public class EmployeeRestController {
         this.employeeService = employeeService;
     }
 
-    // GET /api/employees - alle Employees
+    @Operation(summary = "Alle Mitarbeiter abrufen", description = "Liefert eine Liste aller Mitarbeiter")
     @GetMapping("/employees")
     public List<Employee> findAll() {
         return employeeService.findAll();
     }
 
-    // GET /api/employees/{id} - Employee anhand der ID
+    @Operation(summary = "Mitarbeiter nach ID finden", description = "Such einen Mitarbeiter anhand der ID")
     @GetMapping("/employees/{employeeId}")
     public Employee findById(@PathVariable int employeeId) {
 
         return employeeService.findById(employeeId);
     }
 
-    // POST /api/employees - neuen Employee hinzufügen
+    @Operation(summary = "Neuen Mitarbeiter erstellen", description = "Erstellt einen neuen Mitarbeiter in der Datenbank")
     @PostMapping("/employees")
     public Employee addEmployee(@RequestBody Employee employee) {
 
@@ -44,13 +47,13 @@ public class EmployeeRestController {
         return employeeService.save(employee);
     }
 
-    // PUT /api/employees - bestehenden Employee aktualisieren
+    @Operation(summary = "Mitarbeiter aktualisieren", description = "Aktualisiert einen bestehenden Mitarbeiter")
     @PutMapping("/employees")
     public Employee updateEmployee(@RequestBody Employee employee) {
         return employeeService.save(employee);
     }
 
-    // DELETE /api/employees/{id} - Employee löschen
+    @Operation(summary = "Mitarbeiter löschen", description = "Löscht einen Mitarbeiter anhand der ID")
     @DeleteMapping("/employees/{employeeId}")
     public String deleteById(@PathVariable int employeeId) {
 

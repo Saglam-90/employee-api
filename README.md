@@ -81,6 +81,19 @@ Die API läuft nun standardmäßig auf:
 
 ---
 
+## 🎯 Swagger UI - Interactive API Documentation
+
+Nach dem Start der Anwendung ist die **Swagger UI** unter folgender URL verfügbar:
+👉 [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
+**Vorteile:**
+- ✅ Alle Endpoints visuell dargestellt
+- ✅ Direktes Testen der API im Browser
+- ✅ Automatisch generierte Dokumentation
+- ✅ Request/Response Schemas einsehbar
+
+---
+
 ## 📝 API Endpoints
 
 | Methode | Endpoint          | Beschreibung                          |
